@@ -1,4 +1,3 @@
-// solution - 01
 const multiplyValue = (a: number, b?: number) => {
     if (b === undefined) {
         return a * 2
@@ -7,7 +6,7 @@ const multiplyValue = (a: number, b?: number) => {
     }
 }
 
-// solution - 02
+
 type TValue = string | number | boolean;
 
 const processInput = (value: TValue) => {
@@ -24,19 +23,19 @@ const processInput = (value: TValue) => {
     }
 }
 
-// solution - 03
+
 type TLatLong = readonly [number, number, string]
 
 const formatCoordinate = ([latitude, longitude, locationName]: TLatLong) => {
     return `Location: ${locationName}  (${latitude}, ${longitude})`;
 }
 
-// solution - 04
+
 const concatenateArrays = <T>(...arrays: T[][]) => {
     return arrays.flat()
 }
 
-// solution - 05
+
 interface ICourse {
     title: string,
     students: number,
@@ -49,12 +48,12 @@ const getPopularCourses = (courses: ICourse[], minStudents: number) => {
     );
 };
 
-// solution - 06
+
 const pluckValues = <T, K extends keyof T>(items: T[], key: K) => {
     return items.map((item) => item[key])
 }
 
-// solution - 07
+
 class Employee {
     constructor(protected name: string, private _baseSalary: number) {
         this.name
@@ -77,7 +76,7 @@ class Manager extends Employee {
     }
 }
 
-// solution - 08
+
 const validateAgeAsync = async (age: number): Promise<string>  => {
     if (age >= 18) {
         return "Access Granted"
