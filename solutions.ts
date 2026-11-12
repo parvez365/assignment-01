@@ -27,11 +27,11 @@ const processInput = (value: TValue) => {
 type TLatLong = readonly [number, number, string]
 
 const formatCoordinate = ([latitude, longitude, locationName]: TLatLong) => {
-    return `Location: ${locationName}  (${latitude}, ${longitude})`;
+    return `Location: ${[locationName]} (${[latitude]}, ${[longitude]})`;
 }
 
 
-const concatenateArrays = <T>(...arrays: T[][]) => {
+const concatenateArrays = <T>(...arrays: T[][]): T[] => {
     return arrays.flat()
 }
 
@@ -49,26 +49,29 @@ const getPopularCourses = (courses: ICourse[], minStudents: number) => {
 };
 
 
-const pluckValues = <T, K extends keyof T>(items: T[], key: K) => {
+const pluckValues = <T, K extends keyof T>(items: T[], key: K): T[K][] => {
     return items.map((item) => item[key])
 }
 
 
 class Employee {
-    constructor(protected name: string, private _baseSalary: number) {
-        this.name
-        this._baseSalary
-    }
+    constructor(
+        protected name: string, 
+        private _baseSalary: number
+    ) {}
 
     getDetails(): string {
-        return `Employee: ${this.name}, Base Salary: ${this._baseSalary}`
+        return `Employee: ${this.name}, 
+             Base Salary: ${this._baseSalary}`
     }
 }
-
 class Manager extends Employee {
-    constructor(name: string, _baseSalary: number, private _department: string) {
-        super(name, _baseSalary)
-        this._department
+    constructor(
+            name: string,
+            _baseSalary: number,
+    private _department: string
+    ) {
+       super(name, _baseSalary)
     }
 
     getRoleInfo(): string {
@@ -77,10 +80,14 @@ class Manager extends Employee {
 }
 
 
-const validateAgeAsync = async (age: number): Promise<string>  => {
-    if (age >= 18) {
-        return "Access Granted"
-    } else {
-       return "Access Denied: Must be 18 or older"
-    }
+const validateAgeAsync = async (age: number): Promise<string> => {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (age >= 18) {
+                resolve ("Access Granted")
+            } else {
+                reject (new Error("Access Denied: Must be 18 or older"))
+            }
+        }, 1000)
+    })
 }
