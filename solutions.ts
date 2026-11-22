@@ -56,38 +56,37 @@ const pluckValues = <T, K extends keyof T>(items: T[], key: K): T[K][] => {
 
 class Employee {
     constructor(
-        protected name: string, 
+        protected name: string,
         private _baseSalary: number
-    ) {}
+    ) { }
 
     getDetails(): string {
-        return `Employee: ${this.name}, 
-             Base Salary: ${this._baseSalary}`
+        return `Employee: ${this.name}, Base Salary: ${this._baseSalary}`
     }
 }
 class Manager extends Employee {
     constructor(
-            name: string,
-            _baseSalary: number,
-    private _department: string
+        name: string,
+        _baseSalary: number,
+        private _department: string
     ) {
-       super(name, _baseSalary)
+        super(name, _baseSalary)
     }
 
     getRoleInfo(): string {
-        return `Manager of Engineering: ${this._department}`
+        return `Manager of ${this._department}: ${this.name}`
     }
 }
 
 
 const validateAgeAsync = async (age: number): Promise<string> => {
     return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (age >= 18) {
-                resolve ("Access Granted")
-            } else {
-                reject (new Error("Access Denied: Must be 18 or older"))
-            }
-        }, 1000)
+        if (age >= 18) {
+            setTimeout(() => {
+                resolve("Access Granted")
+            }, 1000)
+        } else {
+            reject(new Error("Access Denied: Must be 18 or older"))
+        }
     })
 }
